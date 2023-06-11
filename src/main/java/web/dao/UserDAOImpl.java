@@ -22,4 +22,19 @@ public class UserDAOImpl implements UserDAO {
     public void addUsers(User user) {
         entityManager.persist(user);
     }
+
+    @Override
+    public User userById(int id) {
+        return entityManager.find(User.class,id);
+    }
+
+    @Override
+    public void update(int id, User user) {
+        entityManager.merge(user);
+    }
+
+    @Override
+    public void delete(int id) {
+        entityManager.remove(userById(id));
+    }
 }
